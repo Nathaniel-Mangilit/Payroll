@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Database\\Payroll\\api\\api.csproj": {}
+    "D:\\Workspace\\Payroll\\api\\api.csproj": {}
   },
   "projects": {
-    "D:\\Database\\Payroll\\api\\api.csproj": {
+    "D:\\Workspace\\Payroll\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Database\\Payroll\\api\\api.csproj",
+        "projectUniqueName": "D:\\Workspace\\Payroll\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "D:\\Database\\Payroll\\api\\api.csproj",
+        "projectPath": "D:\\Workspace\\Payroll\\api\\api.csproj",
         "packagesPath": "C:\\Users\\Jinthan\\.nuget\\packages\\",
-        "outputPath": "D:\\Database\\Payroll\\api\\obj\\",
+        "outputPath": "D:\\Workspace\\Payroll\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Jinthan\\AppData\\Roaming\\NuGet\\NuGet.Config",
