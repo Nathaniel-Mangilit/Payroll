@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Pressable, Text } from "react-native";
 import Login from "../screens/Login";
 import Home from "../screens/Home";
-import Profile from "../screens/Profile/[id]";
+import Profile from "../screens/Profile";
 
 export type RootLayoutProps = {
   Login: any;
@@ -32,6 +32,7 @@ export const RootLayout = () => {
             />
             <Stack.Screen
               name="Profile"
+              // @ts-ignore
               component={Profile}
               options={{ headerShown: false }}
             />

@@ -10,19 +10,23 @@ import Octicons from "@expo/vector-icons/Octicons";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 
 import { useNavigation } from "@react-navigation/native";
-import { useAuth } from "../../context/AuthContext";
-import useFetch from "../../context/useFetch";
+import { useAuth } from "../context/AuthContext";
+import useFetch from "../context/useFetch";
+import { User } from "../components/intefaces";
 
-const Profile = () => {
-  const { data } = useFetch();
-  const navigation = useNavigation();
+interface UserProfile {
+  user: User;
+}
+
+const Profile = (userProfile: UserProfile) => {
+  const { data }: any = useFetch();
+  const navigation: any = useNavigation();
   const { onLogout } = useAuth();
 
   return (
     <SafeAreaView className="grid h-full bg-white items-center">
       <View className="w-full flex-row justify-start p-4 items-center">
         <View className="w-1/3 items-start justify-center">
-          {/* @ts-ignore */}
           <Pressable onPress={() => navigation.navigate("Home")}>
             <Entypo name="chevron-left" size={30} color="black" />
           </Pressable>
@@ -41,7 +45,6 @@ const Profile = () => {
           <Ionicons name="person-circle" size={100} color="black" />
 
           <Text className="text-xl font-bold">
-            {/* ts-ignore */}
             {data &&
               `${data[0].firstName} ${data[0].middleName[0]}. ${data[0].lastName}`}
           </Text>

@@ -26,7 +26,6 @@ namespace api.Data
         public DbSet<OfficialBusiness> OfficialBusinesses { get; set; }
 
 
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

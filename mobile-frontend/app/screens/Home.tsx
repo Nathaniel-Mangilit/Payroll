@@ -18,11 +18,63 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import useFetch from "../context/useFetch";
-interface Props {}
+import { handleError } from "../helpers/ErrorHandler";
+interface Props {
+  timeLog: string;
+  logStatus: string;
+}
 
 function Home(props: Props) {
-  const { data } = useFetch();
+  const { data }: any = useFetch();
   const navigation = useNavigation();
+  const [clockedIn, setClockedin] = useState(false);
+
+  const clockInHandler = async () => {
+    const timeLog = new Date();
+    const logStatus = "Clocked In";
+    console.log(timeLog);
+    try {
+      const result = await axios.post(
+        `${API_URL}/attendance/${data[0].id}`,
+        {
+          timeLog,
+          logStatus,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      alert("Welcome! \n- You have Clocked In!");
+      setClockedin(true);
+    } catch (error) {
+      handleError(error);
+    }
+  };
+  const clockOutHandler = async () => {
+    const timeLog = new Date();
+    const logStatus = "Clocked Out";
+    console.log(timeLog);
+    try {
+      const result = await axios.post(
+        `${API_URL}/attendance/${data[0].id}`,
+        {
+          timeLog,
+          logStatus,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      alert("Thank you! \n- You have Clocked Out!");
+      setClockedin(false);
+    } catch (error) {
+      handleError(error);
+    }
+  };
 
   return (
     <SafeAreaView className="grid h-full bg-white items-center">
@@ -88,7 +140,13 @@ function Home(props: Props) {
       </View>
 
       <View className="absolute bottom-3 w-5/6 items-center ">
-        <TouchableOpacity className="w-full shadow-lg items-center justify-between">
+        <TouchableOpacity
+          disabled={clockedIn}
+          onPress={() => {
+            clockInHandler();
+          }}
+          className="w-full bg-white shadow-lg items-center justify-between"
+        >
           <LinearGradient
             className=" my-2 w-full rounded-full p-3 max-h-24 items-center justify-center"
             colors={["#00C6FB", "#005BEA"]}
@@ -98,7 +156,11 @@ function Home(props: Props) {
             <Text className="font-bold text-white">{"Clock In"}</Text>
           </LinearGradient>
         </TouchableOpacity>
-        <TouchableOpacity className="w-full shadow-lg items-center justify-between p-3 rounded-full border-2">
+        <TouchableOpacity
+          disabled={!clockedIn}
+          onPress={() => clockOutHandler()}
+          className="w-full shadow-lg items-center justify-between p-3 rounded-full border-2"
+        >
           <Text className="font-bold">{"Clock out"}</Text>
         </TouchableOpacity>
       </View>
